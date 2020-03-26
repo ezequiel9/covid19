@@ -1,0 +1,140 @@
+
+//  -- Repond-to function
+//
+//  Uses a mobile first approach. Use bootstrap prefixes (lg, md, sm, xs) and a
+//  suffix of -only to only affect that size. You can also use multiple using a 
+//  sass list list
+//
+//  If you need a size not in the bootstrap grid sizing then use custom and 
+//  specify min and max
+@mixin _respond_to($media, $min_width: false, $max_width: false) {
+    //Setup media checks
+    $is_xl: index($media, xl) != null;
+    $is_lg: index($media, lg) != null;
+    $is_md: index($media, md) != null;
+    $is_sm: index($media, sm) != null;
+    $is_xs: index($media, xs) != null;
+
+    $is_xl_down: index($media, xl-down) != null;
+    $is_lg_down: index($media, lg-down) != null;
+    $is_md_down: index($media, md-down) != null;
+    $is_sm_down: index($media, sm-down) != null;
+    $is_xs_down: index($media, xs-down) != null;
+    
+    $is_xl_only: index($media, xl-only) != null;
+    $is_lg_only: index($media, lg-only) != null;
+    $is_md_only: index($media, md-only) != null;
+    $is_sm_only: index($media, sm-only) != null;
+    $is_xs_only: index($media, xs-only) != null;
+    
+    $is_custom: index($media, custom) != null;
+    
+    @if $is_xl {
+        @media only screen and (min-width: $screen-xl-min) { @content; }
+    }@if $is_lg {
+        @media only screen and (min-width: $screen-lg-min) { @content; }
+    }
+    @if $is_md {
+        @media only screen and (min-width: $screen-md-min) { @content; }
+    }
+    @if $is_sm {
+        @media only screen and (min-width: $screen-sm-min) { @content; }
+    }
+    @if $is_xs {
+        @media only screen and (min-width: $screen-xs-min) { @content; }
+    }
+
+    @if $is_xl_down {
+        @media only screen and (max-width: $screen-xl-max) { @content; }
+    }@if $is_lg_down {
+        @media only screen and (max-width: $screen-lg-max) { @content; }
+    }
+    @if $is_md_down {
+        @media only screen and (max-width: $screen-md-max) { @content; }
+    }
+    @if $is_sm_down {
+        @media only screen and (max-width: $screen-sm-max) { @content; }
+    }
+    @if $is_xs_down {
+        @media only screen and (max-width: $screen-xs-max) { @content; }
+    }
+    
+    @if $is_xl_only {
+        @media only screen and (min-width: $screen-xl-min) and (max-width: $screen-xl-max){ @content; }
+    }
+    @if $is_lg_only {
+        @media only screen and (min-width: $screen-lg-min) and (max-width: $screen-lg-max){ @content; }
+    }
+    @if $is_md_only {
+        @media only screen and (min-width: $screen-md-min) and (max-width: $screen-md-max){ @content; }
+    }
+    @if $is_sm_only {
+        @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { @content; }
+    }
+    @if $is_xs_only {
+        @media only screen and (min-width: $screen-xs-min) and (max-width: $screen-xs-max) { @content; }
+    }
+    
+    @if $is_custom {
+        @if $min_width and $max_width{
+            @media only screen and (min-width: $min_width) and (max-width: $max_width) { @content; }
+        }
+        @if $min_width and $max_width == false{
+            @media only screen and (min-width: $min_width){ @content; }
+        }
+        @if $max_width and $min_width == false{
+            @media only screen and (max-width: $max_width) { @content; }
+        }
+    }
+}
+
+@mixin _font($name, $file, $weight: normal, $style: normal, $font_types: eot woff woff2 ttf svg, $directory:'../fonts'){
+    $weight: $weight;
+    $style: $style;
+    $src: "";
+    @font-face {
+        font-family: $name;
+
+        @if index($font_types, eot){
+            $src: $src + 
+            "url('#{$directory}/#{$file}.eot');src: url('#{$directory}/#{$file}.eot?#iefix') format('embedded-opentype')";
+        }
+        @if index($font_types, woff2){
+            @if $src != ""{
+                $src: $src + ",";
+            }
+            $src: $src + "url('#{$directory}/#{$file}.woff2') format('woff2')";
+        }
+        @if index($font_types, woff){
+            @if $src != ""{
+                $src: $src + ",";
+            }
+            $src: $src + "url('#{$directory}/#{$file}.woff') format('woff')";
+        }
+        @if index($font_types, ttf){
+            @if $src != ""{
+                $src: $src + ",";
+            }
+            $src: $src + "url('#{$directory}/#{$file}.ttf') format('truetype')";
+        }
+        @if index($font_types, svg){
+            @if $src != ""{
+                $src: $src + ",";
+            }
+            $src: $src + "url('#{$directory}/#{$file}.svg##{$name}#{$weight}') format('svg')";
+        }
+        src: #{$src};
+            
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@mixin _animate($duration: 0.6s){
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-duration: $duration;
+    animation-duration: $duration;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}

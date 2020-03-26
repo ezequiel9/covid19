@@ -1,0 +1,117 @@
+#map_container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+#topbar {
+    position: absolute;
+    top: -100%;
+    background: #2461a9;
+    z-index: 9;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include _respond_to(custom, 0, 992px) {
+        top: 0;
+    }
+    .title {
+        padding: 5px 5px 5px 30px;
+        font-size: 30px;
+        color: white;
+    }
+    .menu-opener {
+        cursor: pointer;
+        font-size: 16px;
+        color: white;
+        margin-right: 30px;
+    }
+}
+
+#sidebar {
+    position: absolute;
+    z-index: 10;
+    width: 500px;
+    display: flex;
+    height: 100%;
+    background-color: #111;
+    left: 0;
+    top: 0;
+    box-shadow: 0 0 12px 2px #000;
+    flex-flow: column;
+    transition: left .3s;
+    @include _respond_to(custom, 0, 992px) {
+        left: -500px;
+    }
+    &.open {
+        left: 0 !important;
+    }
+    header {
+        background: #2461a9;
+        padding: 15px 30px;
+        .title {
+            font-size: 30px;
+            color: white;
+            span.menu-closer {
+                display: block;
+                float: right;
+                font-size: 12px;
+                cursor: pointer;
+                @include _respond_to(custom, 993px, 5000px) {
+                    display: none;
+                }
+            }
+        }
+        .extra-data {
+            a {
+                font-style: italic;
+                color: white;
+            }
+            span {
+                font-weight: 600;
+                color: #ff5e5e;
+            }
+        }
+
+    }
+    footer {
+        background: #2561a9;
+        padding: 10px 15px;
+        border-top: 3px solid #888;
+        display: flex;
+        justify-content: space-evenly;
+        .col {
+            display: flex;
+            font-size: 14px;
+            justify-content: center;
+            img {
+                padding-right: 5px;
+                width: 18px;
+            }
+        }
+    }
+    ul#provinces {
+        flex: 1;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+        li {
+            font-size: 17px;
+            border-bottom: 1px solid #1d1d1d;
+            color: white;
+            padding: 5px 15px;
+            a {
+                color: white;
+                text-decoration: none;
+            }
+            &:hover {
+                background: #2e2e2e;
+            }
+            span {
+                font-size: 13px;
+            }
+        }
+    }
+}

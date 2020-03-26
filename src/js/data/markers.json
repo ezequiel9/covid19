@@ -1,0 +1,9 @@
+{
+  "provinces": [
+    {
+      "slug": 'capital-federal',
+      "title": 'Capital Federal',
+      "center": [-34.614718,-58.4527925],
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+/* Fonts */
+$light: 300;
+$regular: 400;
+$semibold: 500;
+$bold: 600;
+$black_weight: 800;
+
+/* Site colours */
+$black: #000;
+$white: #fff;
+$grey: #eaeaea;
+
+$main-blue: #030a29; //071D49
+
+$link_colour: #0000ff;
+$color-menu : $main-blue;
+$footer-colour: $main-blue;
+$footer-colour-secondary: #2A2B2F;
+$font-color:#000032;
+$font-color-dark :#000032;
+$paginate-grey: #bfbfbf;
+$background-grey: #f4f4f4;
+$lightergrey: #e8e8ea;
+$lightgrey: #bab9b9;
+$darkgrey: #777777;
+$darkergrey: #474747;
+$blue-transition: $main-blue; //#10182d;
+$color_label : #6b7280;
+$popup-bg : #f0f0f0;
+$line-table : #e6e6e8;
+$bgLogged : #eaeaea;
+$linkColourLogged : #2A2B2F;
+
+  /* Bootstrap media queries */
+$screen-xs-min: 0px;
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+$screen-xs-max: 575.98px;
+$screen-sm-max: 767.98px;
+$screen-md-max: 991.98px;
+$screen-lg-max: 1199.98px;
+$screen-xl-max: 3000px;
+
+/* Time and motion */
+$time: 300;
+$motion: 'ease-in-out';
+
+$spacer: 60px;
+
