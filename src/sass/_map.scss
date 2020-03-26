@@ -18,7 +18,7 @@
     }
     .title {
         padding: 5px 5px 5px 30px;
-        font-size: 30px;
+        font-size: 25px;
         color: white;
     }
     .menu-opener {
@@ -43,6 +43,7 @@
     transition: left .3s;
     @include _respond_to(custom, 0, 992px) {
         left: -500px;
+        width: 100vw;
     }
     &.open {
         left: 0 !important;
@@ -53,6 +54,9 @@
         .title {
             font-size: 30px;
             color: white;
+            @include _respond_to(custom, 0, 992px) {
+                font-size: 25px;
+            }
             span.menu-closer {
                 display: block;
                 float: right;
@@ -64,6 +68,9 @@
             }
         }
         .extra-data {
+            @include _respond_to(custom, 0, 992px) {
+                font-size: 14px;
+            }
             a {
                 font-style: italic;
                 color: white;
@@ -85,9 +92,12 @@
             display: flex;
             font-size: 14px;
             justify-content: center;
+            @include _respond_to(custom, 0, 992px) {
+                font-size: 12px;
+            }
             img {
                 padding-right: 5px;
-                width: 18px;
+                width: 15px;
             }
         }
     }
@@ -102,6 +112,9 @@
             border-bottom: 1px solid #1d1d1d;
             color: white;
             padding: 5px 15px;
+            @include _respond_to(custom, 0, 992px) {
+                font-size: 14px;
+            }
             a {
                 color: white;
                 text-decoration: none;
