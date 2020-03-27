@@ -15,7 +15,7 @@ export default {
 
     init: function () {
         // axios here
-        axios.get('http://local.coronavirus.api/api/info')
+        axios.get('https://api.covid19argentina.com/api/info')
             .then((response) => {
                 this.data = response.data;
                 // update frontend.
