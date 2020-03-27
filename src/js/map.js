@@ -155,14 +155,14 @@ export default {
     },
 
 
-    loadProvincia: function (feature, layer) {
-        layer.on({
-            mouseover: this.highlightFeature,
-            mouseout: this.resetHighlight,
-            click: this.zoomToFeature
-        });
-        //this.setMenuLink(feature.properties.provincia, layer);
-    },
+    // loadProvincia: function (feature, layer) {
+    //     layer.on({
+    //         mouseover: this.highlightFeature,
+    //         mouseout: this.resetHighlight,
+    //         click: this.zoomToFeature
+    //     });
+    //     //this.setMenuLink(feature.properties.provincia, layer);
+    // },
 
     getColor: function (id) {
         switch (id % 5) {
@@ -217,11 +217,11 @@ export default {
     },
 
 
-    loadDepartamentos: function (feature) {
-        let _this = this;
-        let geoJsonData = require(`./data/provincias${ feature.properties.provincia.toUpperCase() }.json`);
-        L.geoJson(geoJsonData).addTo(_this.map);
-    },
+    // loadDepartamentos: function (feature) {
+    //     let _this = this;
+    //     let geoJsonData = require(`./data/provincias${ feature.properties.provincia.toUpperCase() }.json`);
+    //     L.geoJson(geoJsonData).addTo(_this.map);
+    // },
 
     setMenuLink: function (name, layer) {
         $.data($("#menu li a:contains('" + name.toUpperCase() + "')")[0], 'layer', layer);
