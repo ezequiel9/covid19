@@ -24,4 +24,9 @@ $(document).ready(function () {
         e.preventDefault()
         $('#sidebar').toggleClass('open');
     });
+    $('.more-info').click(function (e) {
+        e.preventDefault()
+        $('.more-info').toggleClass('open');
+        $('header').toggleClass('open');
+    });
 });

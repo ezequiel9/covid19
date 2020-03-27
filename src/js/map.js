@@ -1,4 +1,5 @@
 import {hello} from 'leaflet-providers';
+import helpers from './helpers';
 var L = require('leaflet')
 const axios = require('axios').default;
 
@@ -8,16 +9,41 @@ export default {
     data: null,
     markers: [],
     options: {
-        zoomSnap: 0
+        zoomSnap: 0,
+        maxZoom: 16,
     },
 
     init: function () {
-        this.loadData();
-        this.map = L.map('map_container', this.options)
-        this.setStyle();
-        this.map.setView(this.centerMap(), this.getZoom())
-        this.loadAllProvincias();
-        this.addMarkers();
+        // axios here
+        axios.get('http://local.coronavirus.api/api/info')
+            .then((response) => {
+                this.data = response.data;
+                // update frontend.
+                this.data.states = Object.values(this.data.states)
+                this.data.states.forEach(item => {
+                    let ul = document.getElementById("provinces");
+                    let el = document.createElement('li');
+                    let name = item.cases ? `${item.province.name} -` : item.province.name;
+                    let string = [];
+                    if (item.active) {
+                        string.push(`${item.active} Activos`)
+                    }
+                    if (item.recovered) {
+                        string.push(`${item.recovered} Recuperados`)
+                    }
+                    if (item.death) {
+                        string.push(`${item.death} Fallecidos`)
+                    }
+                    el.innerHTML = `<a href="#">${name}
+                    <span>${string.join(', ')}</span></a>`;
+                    ul.appendChild(el);
+                })
+
+                this.setUpMap();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     },
 
     centerMap: function() {
@@ -35,70 +61,12 @@ export default {
         return 4.7;
     },
 
-    loadData: function() {
-
-        // axios here
-        this.data = {
-            provinces: [
-                {
-                    'slug': 'capital-federal',
-                    'cases': 23,
-                    'active': 2,
-                    'recovered': 1,
-                    'death': 0,
-                    'title': 'Capital Federal',
-                    'center': [-34.614718, -58.4527925],
-                },
-                {
-                    'slug': 'tierra-del-fuego',
-                    'cases': 65,
-                    'active': 2,
-                    'recovered': 1,
-                    'death': 0,
-                    'title': 'Tierra del Fuego',
-                    'center': [-53.7796186,-68.9949533],
-                },
-                {
-                    'slug': 'jujuy',
-                    'cases': 12,
-                    'active': 2,
-                    'recovered': 1,
-                    'death': 0,
-                    'title': 'Jujuy',
-                    'center': [-22.9547407,-66.0151787],
-                },,
-                {
-                    'slug': 'cordoba',
-                    'cases': 0,
-                    'active': 0,
-                    'recovered': 0,
-                    'death': 0,
-                    'title': 'Cordoba',
-                    'center': [-22.9547407,-66.0151787],
-                },
-            ]
-        }
-
-        // update frontend.
-        this.data.provinces.forEach(province => {
-            let ul = document.getElementById("provinces");
-            let el = document.createElement('li');
-            let title = province.cases ? `${province.title} -` : province.title;
-            let string = [];
-            if (province.active) {
-                string.push(`${province.active} Activos`)
-            }
-            if (province.recovered) {
-                string.push(`${province.recovered} Recuperados`)
-            }
-            if (province.death) {
-                string.push(`${province.death} Fallecidos`)
-            }
-            el.innerHTML = `<a href="#">${title} 
-                <span>${string.join(', ')}</span></a>`;
-            ul.appendChild(el);
-        })
-
+    setUpMap: function() {
+        this.map = L.map('map_container', this.options)
+        this.setStyle();
+        this.map.setView(this.centerMap(), this.getZoom())
+        this.loadAllProvincias();
+        this.addMarkers();
     },
 
     setStyle: function () {
@@ -118,12 +86,33 @@ export default {
 
     addMarkers: function () {
 
-        this.data.provinces.forEach((province) => {
+        helpers.animateValue("total-cases", 0, this.data.total_cases, 2500);
+        let updatedAt = document.getElementById('updated-at');
+        updatedAt.innerHTML = this.data.updated_at;
+
+        this.data.states.forEach((province) => {
             if (province.cases) {
-                let marker = L.marker(province.center, {
-                    title: province.title,
+                // add marker
+                let marker = L.marker([province.province.lat, province.province.lng], {
+                    title: province.province.name,
                     icon: this.getMarker(province.cases)
                 }).addTo(this.map);
+
+                let popup = `<div>
+                    <h4>${province.province.name}</h4>
+                    <div class="cases">Casos registrados: ${province.cases}</div>
+                    <div class="cases">Recuperados: ${province.recovered}</div>
+                    <div class="cases">Fallecidos: ${province.death}</div>
+                </div>`;
+
+                // add pop up
+                marker.on('mouseover', (e) => {
+                    L.popup()
+                        .setLatLng(e.latlng)
+                        .setContent(popup)
+                        .openOn(this.map);
+                });
+
                 this.markers.push(marker);
             }
         })
@@ -145,8 +134,8 @@ export default {
     buildIcon: function (numberOfCases) {
         return {
             mapIconUrl: `<svg width="50" height="50">
-                  <circle cx="25" cy="25" r="25" fill="#aeaeae" />
-                  <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="20px" font-family="Arial" dy=".3em">
+                  <circle cx="25" cy="25" r="25" fill="#2561a9" />
+                  <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="18px" font-family="Poppins" dy=".3em">
                       ${numberOfCases}
                   </text>
                   Sorry, your browser does not support inline SVG.
@@ -191,13 +180,12 @@ export default {
     },
 
     getStyle: function (feature) {
-        console.log('LOG', this);
         return {
             fillColor: '#0072bb',//this.getColor(feature.properties.objectid),
-            fillOpacity: 0.7,
+            fillOpacity: 0.4,
             color: 'white',
             weight: 1,
-            opacity: 0.8,
+            opacity: 0.6,
             dashArray: '3'
         };
     },

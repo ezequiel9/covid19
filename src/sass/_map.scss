@@ -2,6 +2,17 @@
     position: fixed;
     height: 100%;
     width: 100%;
+    .leaflet-popup {
+        left: -88px !important;
+        bottom: 21px !important;
+        width: 200px;
+        .leaflet-popup-content-wrapper {
+            border-radius: 5px;
+            background: #ffffff;
+            color: black;
+            font-weight: 600;
+        }
+    }
 }
 
 #topbar {
@@ -42,7 +53,7 @@
     flex-flow: column;
     transition: left .3s;
     @include _respond_to(custom, 0, 992px) {
-        left: -500px;
+        left: -100vw;
         width: 100vw;
     }
     &.open {
@@ -51,9 +62,25 @@
     header {
         background: #2461a9;
         padding: 15px 30px;
+        position: relative;
+        &.open {
+            .extra-information {
+                display: block;
+                overflow: inherit;
+            }
+        }
+        .extra-information {
+            display: none;
+            overflow: hidden;
+            margin-top: 15px;
+            transition: 0.4s;
+        }
         .title {
             font-size: 30px;
             color: white;
+            border-bottom: 1px solid #1e59a0;
+            margin-bottom: 6px;
+            padding-bottom: 6px;
             @include _respond_to(custom, 0, 992px) {
                 font-size: 25px;
             }
@@ -67,6 +94,13 @@
                 }
             }
         }
+        .sub-header {
+            font-weight: 600;
+            color: #ff5e5e;
+            /* font-style: italic; */
+            text-transform: uppercase;
+            font-size: 22px;
+        }
         .extra-data {
             @include _respond_to(custom, 0, 992px) {
                 font-size: 14px;
@@ -75,12 +109,22 @@
                 font-style: italic;
                 color: white;
             }
-            span {
+            .quedate-en-casa {
                 font-weight: 600;
                 color: #ff5e5e;
             }
         }
-
+        .lnr-chevron-down-circle {
+            color: #11151d;
+            font-size: 20px;
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            transition: all .3s;
+            &.open {
+                transform: rotate(180deg);
+            }
+        }
     }
     footer {
         background: #2561a9;
