@@ -87,6 +87,8 @@ export default {
     addMarkers: function () {
 
         helpers.animateValue("total-cases", 0, this.data.total_cases, 2500);
+        helpers.animateValue("total-recovered", 0, this.data.total_recovered, 2500);
+        helpers.animateValue("total-death", 0, this.data.total_death, 2500);
         let updatedAt = document.getElementById('updated-at');
         updatedAt.innerHTML = this.data.updated_at;
 
@@ -107,6 +109,12 @@ export default {
 
                 // add pop up
                 marker.on('mouseover', (e) => {
+                    L.popup()
+                        .setLatLng(e.latlng)
+                        .setContent(popup)
+                        .openOn(this.map);
+                });
+                marker.on('click', (e) => {
                     L.popup()
                         .setLatLng(e.latlng)
                         .setContent(popup)
