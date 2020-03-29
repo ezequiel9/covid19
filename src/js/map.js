@@ -14,8 +14,8 @@ export default {
     },
 
     init: function () {
-        // axios here
-        axios.get('https://api.covid19argentina.com/api/info')
+        // axios here https://api.covid19argentina.com
+        axios.get('http://local.coronavirus.api/api/info')
             .then((response) => {
                 this.data = response.data;
                 // update frontend.
@@ -89,6 +89,13 @@ export default {
         helpers.animateValue("total-cases", 0, this.data.total_cases, 2500);
         helpers.animateValue("total-recovered", 0, this.data.total_recovered, 2500);
         helpers.animateValue("total-death", 0, this.data.total_death, 2500);
+
+        document.getElementById("fatality").innerHTML = ((this.data.total_death / this.data.total_cases) * 100).toFixed(2);
+        document.getElementById("recovered").innerHTML = ((this.data.total_recovered / this.data.total_cases) * 100).toFixed(2);
+        helpers.animateValue("world-cases", 0, this.data.world_total_cases, 2500);
+        helpers.animateValue("world-recovered", 0, this.data.world_total_recovered, 2500);
+        helpers.animateValue("world-fatalities", 0, this.data.world_total_death, 2500);
+
         let updatedAt = document.getElementById('updated-at');
         updatedAt.innerHTML = this.data.updated_at;
 

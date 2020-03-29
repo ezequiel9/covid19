@@ -205,3 +205,22 @@
         }
     }
 }
+
+
+.statics {
+    position: absolute;
+    bottom: 0px;
+    z-index: 11;
+    /* background: #2561a9; */
+    right: 0;
+    .card {
+        padding: 15px;
+        margin-bottom: 15px;
+        background: #2561a9;
+        color: white;
+        .number {
+            font-size: 20px;
+            color: #5eedfe;
+        }
+    }
+}
