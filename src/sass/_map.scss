@@ -218,9 +218,21 @@
         margin-bottom: 15px;
         background: #2561a9;
         color: white;
+        @include _respond_to(custom, 0, 992px) {
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        .title {
+            @include _respond_to(custom, 0, 992px) {
+                font-size: 12px;
+            }
+        }
         .number {
             font-size: 20px;
             color: #5eedfe;
+            @include _respond_to(custom, 0, 992px) {
+                font-size: 15px;
+            }
         }
     }
 }
