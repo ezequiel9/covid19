@@ -1,0 +1,134 @@
+// Base Colors
+$shade-10: #2561a9 !default;
+$shade-1: #d7dcdf !default;
+$shade-0: #fff !default;
+$teal: #ff5e5e !default;
+
+
+$range-handle-color: $shade-10 !default;
+$range-handle-color-hover: $teal !default;
+$range-handle-size: 20px !default;
+
+$range-track-color: $shade-1 !default;
+$range-track-height: 10px !default;
+
+$range-label-color: $shade-10 !default;
+$range-label-width: 60px !default;
+
+
+
+.range-slider {
+    width: 75%;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    margin: 75px auto 0 auto;
+    @include _respond_to(custom, 993px, 5000px) {
+        width: calc(100% - 560px);
+        left: inherit;
+        right: 30px;
+        margin-top: 30px;
+    }
+    .range-slider__range {
+        -webkit-appearance: none;
+        width: 70%;
+        height: $range-track-height;
+        border-radius: 5px;
+        background: $range-track-color;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        @include _respond_to(custom, 993px, 5000px) {
+            width: 90%;
+        }
+        // Range Handle
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: $range-handle-size;
+            height: $range-handle-size;
+            border-radius: 50%;
+            background: $range-handle-color;
+            cursor: pointer;
+            transition: background .15s ease-in-out;
+
+            &:hover {
+                background: $range-handle-color-hover;
+            }
+        }
+
+        &:active::-webkit-slider-thumb {
+            background: $range-handle-color-hover;
+        }
+
+        &::-moz-range-thumb {
+            width: $range-handle-size;
+            height: $range-handle-size;
+            border: 0;
+            border-radius: 50%;
+            background: $range-handle-color;
+            cursor: pointer;
+            transition: background .15s ease-in-out;
+
+            &:hover {
+                background: $range-handle-color-hover;
+            }
+        }
+
+        &:active::-moz-range-thumb {
+            background: $range-handle-color-hover;
+        }
+
+        // Focus state
+        &:focus {
+
+            &::-webkit-slider-thumb {
+                box-shadow: 0 0 0 3px $shade-0,
+                0 0 0 6px $teal;
+            }
+        }
+    }
+
+    // Range Label
+    .range-slider__value {
+        top: -2px;
+        position: absolute;
+        width: 25%;
+        color: $shade-0;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 3px;
+        background: $range-label-color;
+        padding: 5px 10px;
+        margin-left: 8px;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;         /* Opera/IE 8+ */
+        @include _respond_to(custom, 993px, 5000px) {
+            width: 10%;
+        }
+        &:after {
+            position: absolute;
+            top: 8px;
+            left: -7px;
+            width: 0;
+            height: 0;
+            border-top: 7px solid transparent;
+            border-right: 7px solid $range-label-color;
+            border-bottom: 7px solid transparent;
+            content: '';
+        }
+    }
+}
+
+
+// Firefox Overrides
+::-moz-range-track {
+    background: $range-track-color;
+    border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+    border: 0;
+}

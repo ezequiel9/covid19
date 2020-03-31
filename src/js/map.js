@@ -7,15 +7,16 @@ export default {
     map: null,
     geojson: null,
     data: null,
+    timeLine: null,
     markers: [],
     options: {
         zoomSnap: 0,
         maxZoom: 16,
     },
 
-    init: function () {
+    init: function (API_URL) {
         // axios here https://api.covid19argentina.com
-        axios.get('https://api.covid19argentina.com/api/info')
+        axios.get(API_URL + '/info')
             .then((response) => {
                 this.data = response.data;
                 // update frontend.
@@ -44,7 +45,24 @@ export default {
             .catch((error) => {
                 console.log(error);
             })
+
+        /**
+         * Get Time Line
+         */
+        axios.get(API_URL + '/daily')
+            .then((response) => {
+                this.timeLine = response.data;
+                this.setRangeControls();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     },
+
+    setRangeControls: function () {
+        helpers.rangeSlider(this.timeLine);
+    },
+
 
     centerMap: function() {
         if (window.innerWidth < 992) {
@@ -104,7 +122,7 @@ export default {
                 // add marker
                 let marker = L.marker([province.province.lat, province.province.lng], {
                     title: province.province.name,
-                    icon: this.getMarker(province.cases)
+                    icon: this.getMarker(province)
                 }).addTo(this.map);
 
                 let popup = `<div>
@@ -135,10 +153,11 @@ export default {
 
     },
 
-    getMarker: function (numberOfCases) {
+    getMarker: function (province) {
+        let icon = this.buildIcon(province)
         return L.divIcon({
             className: "leaflet-data-marker",
-            html: L.Util.template(this.buildIcon(numberOfCases).mapIconUrl, this.buildIcon(numberOfCases)), //.replace('#','%23'),
+            html: L.Util.template(icon.mapIconUrl, icon), //.replace('#','%23'),
             iconAnchor  : [12, 32],
             iconSize    : [25, 30],
             popupAnchor : [0, -28]
@@ -146,12 +165,12 @@ export default {
     },
 
 
-    buildIcon: function (numberOfCases) {
+    buildIcon: function (province) {
         return {
-            mapIconUrl: `<svg width="50" height="50">
+            mapIconUrl: `<svg width="50" height="50" id="${province.province.slug}" class="province-marker">
                   <circle cx="25" cy="25" r="25" fill="#2561a9" />
                   <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="18px" font-family="Poppins" dy=".3em">
-                      ${numberOfCases}
+                      ${province.cases}
                   </text>
                   Sorry, your browser does not support inline SVG.
             </svg>`
@@ -164,13 +183,13 @@ export default {
         let geoJsonData = require('./data/provincias.json'); //(with path)
         geoJsonData = geoJsonData.features;
         _this.geojson = L.geoJson(geoJsonData, {
-            //onEachFeature: this.loadProvincia,
+            //onEachFeature: this.loadProvince,
             style: this.getStyle
         }).addTo(_this.map);
     },
 
 
-    // loadProvincia: function (feature, layer) {
+    // loadProvince: function (feature, layer) {
     //     layer.on({
     //         mouseover: this.highlightFeature,
     //         mouseout: this.resetHighlight,

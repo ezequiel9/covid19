@@ -236,3 +236,37 @@
         }
     }
 }
+
+.buy-me-a-coffee {
+    position: absolute;
+    z-index: 11;
+    border-radius: 50%;
+    display: flex;
+    background: #2561a9;
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    left: 515px;
+    box-shadow: 1px 1px 4px #333;
+    align-items: center;
+    justify-content: center;
+    svg {
+        path {
+            fill: #ff5e5e;
+            &.white {
+                fill: white;
+            }
+        }
+    }
+    &:hover {
+        transform: rotate(15deg);
+    }
+    @include _respond_to(custom, 0, 992px) {
+        left: 15px;
+        width: 35px;
+        height: 35px;
+        svg {
+            width: 18px;
+        }
+    }
+}

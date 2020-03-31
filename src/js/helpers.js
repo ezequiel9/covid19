@@ -30,8 +30,53 @@ export default {
 
         timer = setInterval(run, stepTime);
         run();
-    }
+    },
 
+
+    rangeSlider(timeLine){
+
+        let keys = Object.keys(timeLine);
+        let count = keys.length;
+        let slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+
+        slider.each(function(){
+
+            value.each(function(){
+                let value = $(this).prev().attr('value');
+                $(this).html(value);
+            });
+
+            range.on('input', function(){
+                let options = { month: 'short', day: 'numeric' };
+                let format = new Date(keys[this.value]);
+                let date = format.toLocaleDateString('es-ES', options);
+                $(this).next(value).html(`${date}`);
+
+                // Update markers
+                Object.values(timeLine[keys[this.value]]).forEach((item) => {
+                    let provinceMarker = `.province-marker#${item.province.slug}`;
+                    if ($(provinceMarker)) {
+                        if (parseInt(item.cases) > 0) {
+                            $(provinceMarker).fadeIn();
+                        } else {
+                            $(provinceMarker).fadeOut();
+                        }
+                        $(provinceMarker).find('text').html(item.cases);
+                    }
+                })
+
+            });
+        });
+
+
+        $('#daily-cases').prop('max', count-1).val(count-1);
+        let options = { month: 'short', day: 'numeric' };
+        let format = new Date(keys[count-1])
+        let date = format.toLocaleDateString('es-ES', options);
+        $('#daily-cases-value').html(`${date}`);
+    }
 
 };
 

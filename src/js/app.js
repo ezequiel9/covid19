@@ -2,14 +2,17 @@
  * Created by Ezequiel on 26/03/2020.
  */
 import $ from 'jquery';
+import helpers from './helpers';
 import app from './map';
 
 window.jQuery = $;
 window.$ = $;
+// const API_URL = 'https://local.coronavirus.api/api';
+const API_URL = 'https://api.covid19argentina.com/api';
 
 $(document).ready(function () {
 
-    app.init();
+    app.init(API_URL);
 
     $('#menu li a')
         .mouseover( app.highlightFeature)
