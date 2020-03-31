@@ -66,7 +66,7 @@ export default {
 
     centerMap: function() {
         if (window.innerWidth < 992) {
-            return new L.LatLng(-39,-64);
+            return new L.LatLng(-38,-64);
         }
         return new L.LatLng(-40,-78);
     },
@@ -74,7 +74,7 @@ export default {
 
     getZoom: function() {
         if (window.innerWidth < 992) {
-            return 4.2;
+            return 4;
         }
         return 4.7;
     },
