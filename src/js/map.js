@@ -66,7 +66,7 @@ export default {
 
     centerMap: function() {
         if (window.innerWidth < 992) {
-            return new L.LatLng(-40,-65);
+            return new L.LatLng(-39,-64);
         }
         return new L.LatLng(-40,-78);
     },

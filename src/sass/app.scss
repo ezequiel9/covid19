@@ -246,3 +246,15 @@ a {
 }
 
 
+.leaflet-container .leaflet-control-attribution {
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @include _respond_to(custom, 0, 992px) {
+        margin: 0;
+        max-width: 200px;
+    }
+}
+
+
