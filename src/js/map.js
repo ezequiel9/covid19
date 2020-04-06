@@ -125,12 +125,18 @@ export default {
                     icon: this.getMarker(province)
                 }).addTo(this.map);
 
-                let popup = `<div>
+                let popup = '';
+
+                popup += `<div>
                     <h4>${province.province.name}</h4>
                     <div class="cases">Casos registrados: ${province.cases}</div>
-                    <div class="cases">Recuperados: ${province.recovered}</div>
-                    <div class="cases">Fallecidos: ${province.death}</div>
-                </div>`;
+                    <div class="cases">Fallecidos: ${province.death}</div>`;
+
+                if (province.recovered > 0) {
+                    popup += `<div class="cases">Recuperados: ${province.recovered}</div>`;
+                }
+
+                popup += '</div>';
 
                 // add pop up
                 marker.on('mouseover', (e) => {

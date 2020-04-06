@@ -3,6 +3,7 @@
     height: 100%;
     width: 100%;
     .leaflet-popup {
+        font-family: 'Poppins', sans-serif;
         left: -88px !important;
         bottom: 21px !important;
         width: 200px;
@@ -11,6 +12,10 @@
             background: #ffffff;
             color: black;
             font-weight: 600;
+            h4 {
+                border-bottom: 1px solid #e9e9e9;
+                margin-bottom: 9px;
+            }
         }
     }
 }
