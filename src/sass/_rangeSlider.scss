@@ -11,11 +11,13 @@ $range-label-width: 60px !default;
     left: 0;
     right: 0;
     margin: 75px auto 0 auto;
+    padding-right: 0px;
     @include _respond_to(custom, 993px, 5000px) {
         width: calc(100% - 560px);
         left: inherit;
         right: 30px;
         margin-top: 30px;
+        padding-right: 49px;
     }
     .range-slider__range {
         -webkit-appearance: none;
@@ -76,34 +78,32 @@ $range-label-width: 60px !default;
 
     // Range Label
     .range-slider__value {
-        top: -2px;
+        top: -11px;
         position: absolute;
-        width: 25%;
+        width: 80px;
+        height:50px;
         color: $blue;
         line-height: 20px;
         text-align: center;
         border-radius: 3px;
         background: $blue-background;
-        padding: 5px 10px;
+        padding: 10px 10px;
         margin-left: 8px;
         font-size: 23px;
         font-weight: 600;
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
         -moz-box-sizing: border-box;    /* Firefox, other Gecko */
         box-sizing: border-box;         /* Opera/IE 8+ */
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        right: -5px;
         @include _respond_to(custom, 993px, 5000px) {
-            width: 6%;
+            width: 60px;
         }
-        &:after {
-            position: absolute;
-            top: 9px;
-            left: -7px;
-            width: 0;
-            height: 0;
-            border-top: 7px solid transparent;
-            border-right: 7px solid $blue-background;
-            border-bottom: 7px solid transparent;
-            content: '';
+        .month{
+            font-size: 16px;
         }
     }
 }

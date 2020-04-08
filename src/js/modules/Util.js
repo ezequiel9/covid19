@@ -48,10 +48,9 @@ export default{
 
             range.on('input', function(){
                 let format = new Date(keys[this.value]);
-                let date = format.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase();
-                date += '<br>';
-                date += format.toLocaleDateString('es-ES', { day: 'numeric' });
-                $(this).next(value).html(`${date}`);
+                let date = '<span class="date">'+format.toLocaleDateString('es-ES', { day: 'numeric' })+'</span>';
+                date += '<span class="month">'+format.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase()+'</span>';
+                $(this).next(value).html(date);
 
                 // Update markers
                 Object.values(timeLine[keys[this.value]]).forEach((item) => {
@@ -72,10 +71,9 @@ export default{
 
         $('#daily-cases').prop('max', count-1).val(count-1);
         let format = new Date(keys[count-1]);
-        let date = format.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase();
-        date += '<br>';
-        date += format.toLocaleDateString('es-ES', { day: 'numeric' });
-        $('#daily-cases-value').html(`${date}`);
+        let date = '<span class="date">'+format.toLocaleDateString('es-ES', { day: 'numeric' })+'</span>';
+        date += '<span class="month">'+format.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase()+'</span>';
+        $('#daily-cases-value').html(date);
     },
 
     populateProvinceList(provinces) {

@@ -4,7 +4,7 @@
     width: 100%;
     .leaflet-popup {
         font-family: 'Poppins', sans-serif;
-        left: -88px !important;
+        left: -92px !important;
         bottom: 21px !important;
         width: 200px;
         .leaflet-popup-content-wrapper {
@@ -50,24 +50,28 @@
     justify-content: space-between;
     box-shadow: 0 2px 6px #191919;
     align-items: center;
+    padding: 10px 25px;
     @include _respond_to(custom, 0, 992px) {
         top: 0;
     }
     .title {
-        padding: 10px 5px 10px 30px;
-        font-size: 25px;
+        font-size: 20px;
         color: white;
     }
     .menu-opener {
         cursor: pointer;
-        font-size: 16px;
-        color: white;
         margin-right: 30px;
         position: relative;
-        .lnr-menu {
-            padding-top: 4px;
-            position: absolute;
-            left: -20px;
+        height: 12px;
+        width: 35px;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        span{
+            display: block;
+            height: 3px;
+            width: 35px;
+            background-color: white;
         }
     }
 }

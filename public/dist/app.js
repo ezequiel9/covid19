@@ -28454,7 +28454,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
  */
 
 
-var API_URL = 'https://local.coronavirus.api/api'; // const API_URL = 'https://api.covid19argentina.com/api';
+var API_URL = 'https://4bfd279c.ngrok.io/api'; // const API_URL = 'https://api.covid19argentina.com/api';
 
 var Api = /*#__PURE__*/function () {
   function Api() {
@@ -28990,14 +28990,13 @@ __webpack_require__.r(__webpack_exports__);
       });
       range.on('input', function () {
         var format = new Date(keys[this.value]);
-        var date = format.toLocaleDateString('es-ES', {
-          month: 'short'
-        }).toUpperCase();
-        date += '<br>';
-        date += format.toLocaleDateString('es-ES', {
+        var date = '<span class="date">' + format.toLocaleDateString('es-ES', {
           day: 'numeric'
-        });
-        $(this).next(value).html("".concat(date)); // Update markers
+        }) + '</span>';
+        date += '<span class="month">' + format.toLocaleDateString('es-ES', {
+          month: 'short'
+        }).toUpperCase() + '</span>';
+        $(this).next(value).html(date); // Update markers
 
         Object.values(timeLine[keys[this.value]]).forEach(function (item) {
           var provinceMarker = ".province-marker#".concat(item.province.slug);
@@ -29016,14 +29015,13 @@ __webpack_require__.r(__webpack_exports__);
     });
     $('#daily-cases').prop('max', count - 1).val(count - 1);
     var format = new Date(keys[count - 1]);
-    var date = format.toLocaleDateString('es-ES', {
-      month: 'short'
-    }).toUpperCase();
-    date += '<br>';
-    date += format.toLocaleDateString('es-ES', {
+    var date = '<span class="date">' + format.toLocaleDateString('es-ES', {
       day: 'numeric'
-    });
-    $('#daily-cases-value').html("".concat(date));
+    }) + '</span>';
+    date += '<span class="month">' + format.toLocaleDateString('es-ES', {
+      month: 'short'
+    }).toUpperCase() + '</span>';
+    $('#daily-cases-value').html(date);
   },
   populateProvinceList: function populateProvinceList(provinces) {
     provinces.forEach(function (item) {
@@ -29110,8 +29108,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\coronavirus\src\js\app.js */"./src/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\coronavirus\src\sass\app.scss */"./src/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/local.covid19.com/src/js/app.js */"./src/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/local.covid19.com/src/sass/app.scss */"./src/sass/app.scss");
 
 
 /***/ })
