@@ -2,23 +2,18 @@
  * Created by Ezequiel on 26/03/2020.
  */
 import $ from 'jquery';
-import helpers from './helpers';
-import app from './map';
+import Map from './modules/Map';
 
 window.jQuery = $;
 window.$ = $;
-// const API_URL = 'https://local.coronavirus.api/api';
-const API_URL = 'https://api.covid19argentina.com/api';
 
 $(document).ready(function () {
 
-    app.init(API_URL);
+    Map.init();
 
-    $('#menu li a')
-        .mouseover( app.highlightFeature)
-        .mouseout( app.resetHighlight )
-        .click( app.zoomToFeature );
-
+    /**
+     * Menu controls Jquery
+     */
     $('.menu-opener').click(function (e) {
         e.preventDefault()
         $('#sidebar').toggleClass('open');
@@ -32,4 +27,23 @@ $(document).ready(function () {
         $('.more-info').toggleClass('open');
         $('header').toggleClass('open');
     });
+
+
+    $('.controls .item').click(function (e) {
+        let setActive = $(this).attr('id');
+        $('.controls .item').removeClass('active');
+        $(this).addClass('active');
+        let current = $('.sidebar-inner .content.active');
+        current.removeClass('active');
+        $('.sidebar-inner').find('.content.'+setActive).addClass('active');
+
+    });
+
+
+    $(document).on('click', '.statics .arrow', function (e) {
+        e.preventDefault();
+        $(this).parent().toggleClass('closed')
+    });
+
+
 });

@@ -1,0 +1,190 @@
+.sidebar {
+    display: flex;
+    flex-flow: row;
+    position: absolute;
+    z-index: 13;
+    flex-flow: row;
+    width: 500px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    box-shadow: 0 0 12px 2px #000;
+    transition: left .3s;
+    .controls {
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+        background: white;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .item {
+            width: 100%;
+            font-size: 10px;
+            display: flex;
+            flex-flow: column;
+            margin: 15px 0;
+            padding: 15px 0;
+            align-items: center;
+            cursor: pointer;
+            &.active {
+                border-left: 5px solid $yellow;
+            }
+            img {
+                margin-bottom: 10px;
+                width: 40px;
+            }
+        }
+    }
+    .sidebar-inner {
+        flex: 1;
+        background: $blue-background;
+        position: relative;
+        max-height: 100%;
+        overflow: hidden;
+        .content {
+            background: $blue-background;
+            height: 100%;
+            position: absolute;
+            padding-top: 80px;
+            width: 100%;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+            h1 {
+                color: $blue;
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            a {
+                color: black;
+            }
+            &.active {
+                visibility: visible;
+                opacity: 1;
+            }
+            &.home {
+                top:0;
+                padding-left: 30px;
+                padding-right: 30px;
+                .sub-header {
+                    color: white;
+                    background-color: $dark;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    line-height: 1.4;
+                    display: inline-block;
+                    margin-top: 50px;
+                    .cases,
+                    .death,
+                    .recovered {
+                        padding-left: 30px;
+                        position: relative;
+                        display: inline-block;
+                    }
+                    img {
+                        position: absolute;
+                        width: 21px;
+                        left: 3px;
+                        top: -1px;
+                    }
+                }
+                .extra-information {
+                    font-size: 14px;
+                    color: $gray;
+                    margin-top: 20px;
+                }
+                .phones-container {
+                    font-size: 14px;
+                    color: $gray;
+                    margin-top: 20px;
+                }
+                .contributors {
+                    font-size: 14px;
+                    color: $gray;
+                    margin-top: 20px;
+                }
+            }
+            &.argentina {
+                top:0;
+                display: flex;
+                flex-flow: column;
+                .header {
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+            }
+            &.world {
+                top:0;
+                display: flex;
+                flex-flow: column;
+                .header {
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+            }
+            .list-container {
+                overflow: auto;
+                padding-top: 15px;
+                input {
+                    width: calc(100% - 60px);
+                    padding: 10px;
+                    margin-left: 30px;
+                    margin-right: 30px;
+                    border: 1px solid $blue;
+                    border-radius: 3px;
+                    background: $blue-background;
+                    margin-bottom: 15px;
+                }
+                ul {
+                    list-style: none;
+                    margin-top: 0;
+                    padding-left: 0;
+                    li {
+                        padding: 10px 30px;
+                        border-bottom: 1px solid $lightgray;
+                        position: relative;
+                        a {
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            max-width: 165px;
+                            display: block;
+                        }
+                        .results {
+                            font-size: 12px;
+                            position: absolute;
+                            right: 30px;
+                            top: 50%;
+                            display: block;
+                            transform: translateY(-50%);
+                            color: white;
+                            background: $dark;
+                            padding: 5px 10px;
+                            border-radius: 15px;
+                            span {
+                                position: relative;
+                                padding-left: 17px;
+                                img {
+                                    width: 12px;
+                                    position: absolute;
+                                    left: 1px;
+                                    top: 3px;
+                                }
+                                &.confirmed {
+                                }
+                                &.deaths {
+                                }
+                                &.recovered {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
