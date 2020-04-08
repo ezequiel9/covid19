@@ -159,6 +159,15 @@ export default{
             }
         });
 
+    },
+
+
+    populateCards (data) {
+        document.getElementById("fatality").innerHTML = ((data.total_death / data.total_cases) * 100).toFixed(2);
+        document.getElementById("recovered").innerHTML = ((data.total_recovered / data.total_cases) * 100).toFixed(2);
+        this.animateValue("world-cases", 0, data.world_total_cases, 2500);
+        this.animateValue("world-recovered", 0, data.world_total_recovered, 2500);
+        this.animateValue("world-fatalities", 0, data.world_total_death, 2500);
     }
 
 };

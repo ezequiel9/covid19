@@ -28702,13 +28702,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
     _Util__WEBPACK_IMPORTED_MODULE_2__["default"].animateValue("total-cases", 0, this.data.total_cases, 2500);
     _Util__WEBPACK_IMPORTED_MODULE_2__["default"].animateValue("total-recovered", 0, this.data.total_recovered, 2500);
     _Util__WEBPACK_IMPORTED_MODULE_2__["default"].animateValue("total-death", 0, this.data.total_death, 2500);
-    document.getElementById("fatality").innerHTML = (this.data.total_death / this.data.total_cases * 100).toFixed(2);
-    document.getElementById("recovered").innerHTML = (this.data.total_recovered / this.data.total_cases * 100).toFixed(2);
-    _Util__WEBPACK_IMPORTED_MODULE_2__["default"].animateValue("world-cases", 0, this.data.world_total_cases, 2500);
-    _Util__WEBPACK_IMPORTED_MODULE_2__["default"].animateValue("world-recovered", 0, this.data.world_total_recovered, 2500);
-    _Util__WEBPACK_IMPORTED_MODULE_2__["default"].animateValue("world-fatalities", 0, this.data.world_total_death, 2500);
     var updatedAt = document.getElementById('updated-at');
     updatedAt.innerHTML = this.data.updated_at;
+    _Util__WEBPACK_IMPORTED_MODULE_2__["default"].populateCards(this.data);
   },
   // Add markers for Argentina Only
   addMarkers: function addMarkers() {
@@ -29084,6 +29080,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
     });
+  },
+  populateCards: function populateCards(data) {
+    document.getElementById("fatality").innerHTML = (data.total_death / data.total_cases * 100).toFixed(2);
+    document.getElementById("recovered").innerHTML = (data.total_recovered / data.total_cases * 100).toFixed(2);
+    this.animateValue("world-cases", 0, data.world_total_cases, 2500);
+    this.animateValue("world-recovered", 0, data.world_total_recovered, 2500);
+    this.animateValue("world-fatalities", 0, data.world_total_death, 2500);
   }
 });
 

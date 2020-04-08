@@ -104,13 +104,10 @@ export default {
         Util.animateValue("total-cases", 0, this.data.total_cases, 2500);
         Util.animateValue("total-recovered", 0, this.data.total_recovered, 2500);
         Util.animateValue("total-death", 0, this.data.total_death, 2500);
-        document.getElementById("fatality").innerHTML = ((this.data.total_death / this.data.total_cases) * 100).toFixed(2);
-        document.getElementById("recovered").innerHTML = ((this.data.total_recovered / this.data.total_cases) * 100).toFixed(2);
-        Util.animateValue("world-cases", 0, this.data.world_total_cases, 2500);
-        Util.animateValue("world-recovered", 0, this.data.world_total_recovered, 2500);
-        Util.animateValue("world-fatalities", 0, this.data.world_total_death, 2500);
         let updatedAt = document.getElementById('updated-at');
         updatedAt.innerHTML = this.data.updated_at;
+
+        Util.populateCards(this.data);
     },
 
     // Add markers for Argentina Only
