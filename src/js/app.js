@@ -3,6 +3,7 @@
  */
 import $ from 'jquery';
 import Map from './modules/Map';
+import {gsap} from "gsap";
 
 window.jQuery = $;
 window.$ = $;
@@ -38,6 +39,19 @@ $(document).ready(function () {
         $('.sidebar-inner').find('.content.'+setActive).addClass('active');
 
     });
+
+    $('.menu-opener').click(function(){
+
+        if($(this).hasClass('open')){
+            gsap.to($('.sidebar'),0.5,{autoAlpha : 0});
+        }else{
+            gsap.to($('.sidebar'),0.5,{autoAlpha : 1});
+        }
+
+        $(this).toggleClass('open');
+        $('.sidebar').toggleClass('open');
+
+    })
 
 
     $(document).on('click', '.statics .arrow', function (e) {

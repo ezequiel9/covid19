@@ -637,7 +637,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   left: 0;
   right: 0;
   margin: 75px auto 0 auto;
-  padding-right: 0px;
+  padding-right: 52px;
 }
 
 @media only screen and (min-width: 993px) and (max-width: 5000px) {
@@ -647,6 +647,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
     right: 30px;
     margin-top: 30px;
     padding-right: 49px;
+  }
+}
+
+@media only screen and (max-width: 991.98px) {
+  .range-slider {
+    margin-top: 0;
+    bottom: 25px;
   }
 }
 
@@ -771,7 +778,16 @@ input::-moz-focus-outer {
 
 @media only screen and (max-width: 991.98px) {
   .sidebar {
-    display: none;
+    position: absolute;
+    flex-flow: column;
+    padding-top: 50px;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+  }
+
+  .sidebar.open {
+    height: 100%;
   }
 }
 
@@ -783,6 +799,13 @@ input::-moz-focus-outer {
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .sidebar .controls {
+    flex-flow: row;
+    width: 100vw;
+  }
 }
 
 .sidebar .controls .item {
@@ -798,6 +821,22 @@ input::-moz-focus-outer {
   color: #A0A1A6;
   border-left: 3px solid white;
   transition: border-left-color 0.5s ease, color 0.5s ease;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .sidebar .controls .item {
+    margin: 0;
+    margin-right: 25px;
+    border: none;
+    border-bottom: 3px solid white;
+    height: 75px;
+    width: 75px;
+    justify-content: center;
+  }
+
+  .sidebar .controls .item:last-child {
+    margin-right: 0;
+  }
 }
 
 .sidebar .controls .item:first-child {
@@ -832,6 +871,13 @@ input::-moz-focus-outer {
   position: relative;
 }
 
+@media only screen and (max-width: 991.98px) {
+  .sidebar .controls .item .image {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .sidebar .controls .item .image svg {
   height: 100%;
   width: 100%;
@@ -847,12 +893,25 @@ input::-moz-focus-outer {
   height: 50px;
 }
 
+@media only screen and (max-width: 991.98px) {
+  .sidebar .controls .item:nth-child(2) .image {
+    height: 40px;
+    width: 40px;
+  }
+}
+
 .sidebar .sidebar-inner {
   flex: 1;
   background: #f3f7fa;
   position: relative;
   max-height: 100%;
   overflow: hidden;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .sidebar .sidebar-inner {
+    width: 100vw;
+  }
 }
 
 .sidebar .sidebar-inner .content {
@@ -864,6 +923,14 @@ input::-moz-focus-outer {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .sidebar .sidebar-inner .content {
+    padding-top: 30px;
+    height: calc(100vh - 50px - 75px);
+    overflow-y: scroll;
+  }
 }
 
 .sidebar .sidebar-inner .content h1 {
@@ -1481,6 +1548,13 @@ input::-moz-focus-outer {
   width: 100%;
 }
 
+@media only screen and (max-width: 991.98px) {
+  #map_container {
+    top: 50px;
+    height: calc(100% - 50px);
+  }
+}
+
 #map_container .leaflet-popup {
   font-family: 'Poppins', sans-serif;
   left: -92px !important;
@@ -1524,7 +1598,7 @@ input::-moz-focus-outer {
   position: absolute;
   top: -100%;
   background: #74AADC;
-  z-index: 9;
+  z-index: 999;
   width: 100vw;
   display: flex;
   justify-content: space-between;
@@ -1546,7 +1620,6 @@ input::-moz-focus-outer {
 
 #topbar .menu-opener {
   cursor: pointer;
-  margin-right: 30px;
   position: relative;
   height: 12px;
   width: 35px;
@@ -1560,6 +1633,22 @@ input::-moz-focus-outer {
   height: 3px;
   width: 35px;
   background-color: white;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#topbar .menu-opener.open {
+  justify-content: center;
+}
+
+#topbar .menu-opener.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 2px;
+}
+
+#topbar .menu-opener.open span:nth-child(2) {
+  transform: rotate(-45deg);
+  top: -1px;
 }
 
 html,
@@ -1653,9 +1742,12 @@ a {
 
 @media only screen and (min-width: 0) and (max-width: 992px) {
   .buy-me-a-coffee {
-    left: 15px;
     width: 35px;
     height: 35px;
+    bottom: auto;
+    top: 70px;
+    left: auto;
+    right: 15px;
   }
 
   .buy-me-a-coffee svg {

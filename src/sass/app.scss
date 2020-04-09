@@ -90,9 +90,12 @@ a {
         transform: rotate(15deg);
     }
     @include _respond_to(custom, 0, 992px) {
-        left: 15px;
         width: 35px;
         height: 35px;
+        bottom: auto;
+        top: 70px;
+        left: auto;
+        right: 15px;
         svg {
             width: 18px;
         }
