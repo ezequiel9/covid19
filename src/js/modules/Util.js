@@ -94,7 +94,7 @@ export default{
                     <div class="results">
                         <span class="confirmed" title="Casos confirmados | ${name}">
                             <img src="./images/users-confirmed.svg" alt="Casos confirmados | ${name}">
-                            ${item.active}
+                            ${item.cases}
                         </span> / 
                         ${extra}
                         <span class="deaths" title="Total Fallecidos | ${name}">
