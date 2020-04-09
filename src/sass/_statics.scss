@@ -11,6 +11,10 @@
     border-radius: 5px;
     padding-bottom: 15px;
     transition: all .5s;
+    @include _respond_to(custom, 0, 991px) {
+        left: 50px;
+        width: calc(100% - 100px);
+    }
     &.closed {
         transform: translateY(94%);
         .arrow {
@@ -49,27 +53,57 @@
         }
     }
     .cards {
+        @include _respond_to(custom, 0, 991px) {
+            display: flex;
+        }
         .row {
             display: flex;
             align-items: center;
             justify-content: center;
+            @include _respond_to(custom, 0, 991px) {
+                flex-direction: column;
+                flex: 1;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
             .card {
+                flex: 1;
                 padding: 5px;
-                width: 20%;
                 color: white;
                 text-align: center;
                 background: $blue;
                 margin: 20px 30px;
                 border-radius: 33px;
-                @include _respond_to(custom, 0, 992px) {
+                @include _respond_to(custom, 0, 991px) {
                     padding: 5px;
-                    margin-bottom: 5px;
+                    margin: 10px 15px;
+                    width: 100%;
+                }
+                @include _respond_to(custom, 992px, 1199px) {
+                    padding: 5px;
+                    margin: 15px 20px;
+                    &:nth-last-child(2) {
+                        display: none;
+                    }
+                    &:nth-last-child(1) {
+                        display: none;
+                    }
+                }
+                @include _respond_to(custom, 1200px, 1600px) {
+                    padding: 5px;
+                    margin: 15px 20px;
+                    &:nth-last-child(1) {
+                        display: none;
+                    }
                 }
                 .title {
                     font-size: 11px;
                     text-transform: uppercase;
-                    @include _respond_to(custom, 0, 992px) {
-                        font-size: 12px;
+                    @include _respond_to(custom, 992px, 1199px) {
+                        font-size: 8px;
+                    }
+                    @include _respond_to(custom, 1200px, 1600px) {
+                        font-size: 10px;
                     }
                 }
                 .number {
@@ -77,10 +111,102 @@
                     color: white;
                     line-height: 28px;
                     font-weight: 600;
-                    @include _respond_to(custom, 0, 992px) {
-                        font-size: 15px;
+                    @include _respond_to(custom, 992px, 1199px) {
+                        font-size: 18px;
+                        line-height: 20px;
+                    }
+                    @include _respond_to(custom, 1200px, 1600px) {
+                        font-size: 20px;
+                        line-height: 24px;
                     }
                 }
+                &.up {
+                    position: relative;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        height: 25px;
+                        width: 25px;
+                        top: -11px;
+                        right: 10%;
+                        border-radius: 50%;
+                        border: 1px solid white;
+                        z-index: 11;
+                        background-image: url(/images/up-arrow-lg.svg);
+                        background-repeat: no-repeat;
+                        background-size: 16px;
+                        background-color: #90c51d;
+                        background-position: center;
+                    }
+                }
+                &.down {
+                    position: relative;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        height: 25px;
+                        width: 25px;
+                        top: -11px;
+                        right: 10%;
+                        z-index: 11;
+                        border: 1px solid white;
+                        border-radius: 50%;
+                        background-repeat: no-repeat;
+                        background-size: 16px;
+                        background-color: #b84d34;
+                        background-position: center;
+                        background-image: url(/images/down-arrow-lg.svg);
+                    }
+                }
+                &.yellow {
+                    &:after {
+                        background-color: $yellow;
+                    }
+                }
+                &.green {
+                    &:after {
+                        background-color: #90c51d;
+                    }
+                }
+                &.red {
+                    &:after {
+                        background-color: #b84d34;
+                    }
+                }
+            }
+        }
+    }
+    .growth-cases {
+        display: flex;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        align-items: flex-end;
+        justify-content: space-between;
+        span.bars {
+            background: #b84d34;
+            flex: 1;
+            margin-left: 1px;
+            span {
+
+            }
+        }
+    }
+    .growth-recovered {
+        display: flex;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        align-items: flex-end;
+        justify-content: space-between;
+        span.bars {
+            background: #90c51d;
+            flex: 1;
+            margin-left: 1px;
+            span {
+
             }
         }
     }

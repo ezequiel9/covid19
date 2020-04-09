@@ -109,7 +109,7 @@ export default{
         })
     },
 
-    populateWoldList(countries) {
+    populateWoldList(countries, map) {
         countries.forEach(item => {
             let ul = document.getElementById("countries");
             let el = document.createElement('li');
@@ -117,7 +117,7 @@ export default{
             let string = [];
             if (item.recovered) { string.push(`${item.recovered} Recuperados`) }
             if (item.deaths) { string.push(`${item.deaths} Fallecidos`) }
-            el.innerHTML = `<a href="#">${name}</a>
+            el.innerHTML = `<a href="#" data-lat="${item.lat}" data-lng="${item.lng}">${name}</a>
                     <div class="results">
                         <span class="confirmed" title="Casos confirmados | ${name}">
                             <img src="./images/users-confirmed.svg" alt="Casos confirmados | ${name}">
@@ -137,6 +137,14 @@ export default{
         })
 
         this.filterSearchCountry();
+
+
+        $(document).on('click', '#countries li', function (e) {
+            e.preventDefault();
+            let lat = $(this).find('a').attr('data-lat');
+            let lng = $(this).find('a').attr('data-lng');
+            map.panTo(new L.LatLng(lat, lng));
+        })
     },
 
 
@@ -163,11 +171,65 @@ export default{
 
 
     populateCards (data) {
-        document.getElementById("fatality").innerHTML = ((data.total_death / data.total_cases) * 100).toFixed(2);
-        document.getElementById("recovered").innerHTML = ((data.total_recovered / data.total_cases) * 100).toFixed(2);
+        this.animateValue("confirmed", 0, data.total_cases, 2500);
+        this.animateValue("recovered", 0, data.total_recovered, 2500);
+        this.animateValue("deaths", 0, data.total_death, 2500);
+        this.animateValue("fatality", 0, ((data.total_death / data.total_cases) * 100).toFixed(2), 2500);
+        this.animateValue("recovered-p", 0, ((data.total_recovered / data.total_cases) * 100).toFixed(2), 2500);
+
+        let today = data.world_history[0];
+        let yesterday = data.world_history[0];
+
+        if (today.new_confirmed > yesterday.new_confirmed) {
+            $('#world-cases').closest('.card').addClass('up yellow')
+        } else {
+            $('#world-cases').closest('.card').addClass('down green')
+        }
         this.animateValue("world-cases", 0, data.world_total_cases, 2500);
+
+        if (today.new_recovered > yesterday.new_recovered) {
+            $('#world-recovered').closest('.card').addClass('up green')
+        } else {
+            $('#world-recovered').closest('.card').addClass('down yellow')
+        }
         this.animateValue("world-recovered", 0, data.world_total_recovered, 2500);
-        this.animateValue("world-fatalities", 0, data.world_total_death, 2500);
+
+        if (today.new_deaths > yesterday.new_deaths) {
+            $('#world-deaths').closest('.card').addClass('up red')
+        } else {
+            $('#world-deaths').closest('.card').addClass('down green')
+        }
+        this.animateValue("world-deaths", 0, data.world_total_death, 2500);
+
+        this.animateValue("world-fatalities", 0, ((data.world_total_death / data.world_total_cases) * 100).toFixed(2), 2500);
+        this.animateValue("world-recovered-p", 0, ((data.world_total_recovered / data.world_total_cases) * 100).toFixed(2), 2500);
+
+        /**
+         * Build chart
+         */
+        let maxConfirmed = Math.max.apply(Math, data.world_history.map(function(o) {
+            return o.confirmed;
+        }));
+        let valueRepresentative;
+        let chartTemplate = '';
+
+        data.world_history.reverse().forEach( (day) => {
+            if (day.confirmed) {
+                valueRepresentative = (day.confirmed * 100) / maxConfirmed;
+                chartTemplate += `<span style="height: ${valueRepresentative}%;" title="Confirmados Global" class="bars"></span>`;
+            }
+        });
+        $('.statics').append(`<div class="growth-cases">${chartTemplate}</div>`);
+
+        chartTemplate = '';
+        data.world_history.forEach( (day) => {
+            if (day.recovered) {
+                valueRepresentative = (day.recovered * 100) / maxConfirmed;
+                chartTemplate += `<span style="height: ${valueRepresentative}%;" title="Recuperados Global" class="bars"></span>`;
+            }
+        });
+        $('.statics').append(`<div class="growth-recovered">${chartTemplate}</div>`);
+
     }
 
 };
