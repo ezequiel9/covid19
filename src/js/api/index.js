@@ -4,7 +4,7 @@ const axios = require('axios').default;
  * URL
  * @type {string}
  */
-const API_URL = 'https://4bfd279c.ngrok.io/api';
+const API_URL = 'https://01567818.ngrok.io/api';
 // const API_URL = 'https://api.covid19argentina.com/api';
 
 

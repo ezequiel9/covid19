@@ -2,6 +2,10 @@
     position: fixed;
     height: 100%;
     width: 100%;
+    @include _respond_to(md-down){
+        top: 50px;
+        height: calc(100% - 50px);
+    }
     .leaflet-popup {
         font-family: 'Poppins', sans-serif;
         left: -92px !important;
@@ -44,7 +48,7 @@
     position: absolute;
     top: -100%;
     background: $blue;
-    z-index: 9;
+    z-index: 999;
     width: 100vw;
     display: flex;
     justify-content: space-between;
@@ -60,7 +64,6 @@
     }
     .menu-opener {
         cursor: pointer;
-        margin-right: 30px;
         position: relative;
         height: 12px;
         width: 35px;
@@ -72,6 +75,21 @@
             height: 3px;
             width: 35px;
             background-color: white;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        &.open{
+            justify-content: center;
+            span{
+                &:nth-child(1){
+                    transform: rotate(45deg);
+                    top : 2px;
+                }
+                &:nth-child(2){
+                    transform: rotate(-45deg);
+                    top: -1px;
+                }
+            }
         }
     }
 }

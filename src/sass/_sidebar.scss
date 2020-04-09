@@ -11,7 +11,15 @@
     box-shadow: 0 0 12px 2px #000;
     transition: left .3s;
     @include _respond_to(md-down){
-        display: none;
+        position: absolute;
+        flex-flow: column;
+        padding-top : 50px;
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        &.open{
+            height: 100%;
+        }
     }
     .controls {
         display: flex;
@@ -21,6 +29,11 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        @include _respond_to(md-down){
+            flex-flow: row;
+            width : 100vw;
+
+        }
         .item {
             width: 100%;
             font-size: 12px;
@@ -34,6 +47,18 @@
             color: $greyLight;
             border-left: 3px solid white;
             transition: border-left-color 0.5s ease, color 0.5s ease;
+            @include _respond_to(md-down){
+                margin: 0;
+                margin-right: 25px;
+                border: none;
+                border-bottom: 3px solid white;
+                height: 75px;
+                width: 75px;
+                justify-content: center;
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
             &:first-child{
                 margin-top: 0;
             }
@@ -66,6 +91,10 @@
                 width: 40px;
                 height: 40px;
                 position: relative;
+                @include _respond_to(md-down){
+                    width: 30px;
+                    height: 30px;
+                }
                 svg{
                     height: 100%;
                     width: 100%;
@@ -79,6 +108,10 @@
                 .image{
                     width: 50px;
                     height: 50px;
+                    @include _respond_to(md-down){
+                        height: 40px;
+                        width: 40px;
+                    }
                 }
             }
         }
@@ -89,6 +122,9 @@
         position: relative;
         max-height: 100%;
         overflow: hidden;
+        @include _respond_to(md-down){
+            width: 100vw;
+        }
         .content {
             background: $blue-background;
             height: 100%;
@@ -98,6 +134,11 @@
             visibility: hidden;
             opacity: 0;
             transition: visibility 0s, opacity 0.5s linear;
+            @include _respond_to(md-down){
+                padding-top : 30px;
+                height : calc(100vh - 50px - 75px);
+                overflow-y  : scroll;
+            }
             h1 {
                 color: $blue;
                 font-weight: 600;

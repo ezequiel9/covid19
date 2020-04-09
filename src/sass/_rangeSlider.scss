@@ -11,13 +11,17 @@ $range-label-width: 60px !default;
     left: 0;
     right: 0;
     margin: 75px auto 0 auto;
-    padding-right: 0px;
+    padding-right: 52px;
     @include _respond_to(custom, 993px, 5000px) {
         width: calc(100% - 560px);
         left: inherit;
         right: 30px;
         margin-top: 30px;
         padding-right: 49px;
+    }
+    @include _respond_to(md-down){
+        margin-top: 0;
+        bottom: 25px;
     }
     .range-slider__range {
         -webkit-appearance: none;
