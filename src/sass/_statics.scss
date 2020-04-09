@@ -74,9 +74,9 @@
                 background: $blue;
                 margin: 20px 30px;
                 border-radius: 33px;
-                @include _respond_to(custom, 0, 991px) {
+                @include _respond_to(md-down) {
                     padding: 5px;
-                    margin: 10px 15px;
+                    margin: 5px 10px;
                     width: 100%;
                 }
                 @include _respond_to(custom, 992px, 1199px) {
