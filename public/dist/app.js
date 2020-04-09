@@ -28643,7 +28643,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
               });
 
             case 8:
-              _Util__WEBPACK_IMPORTED_MODULE_2__["default"].populateWoldList(_this2.countries);
+              _Util__WEBPACK_IMPORTED_MODULE_2__["default"].populateWoldList(_this2.countries, _this2.map);
               _Util__WEBPACK_IMPORTED_MODULE_2__["default"].populateProvinceList(_this2.data.states);
 
             case 10:
@@ -29038,7 +29038,7 @@ __webpack_require__.r(__webpack_exports__);
       ul.appendChild(el);
     });
   },
-  populateWoldList: function populateWoldList(countries) {
+  populateWoldList: function populateWoldList(countries, map) {
     countries.forEach(function (item) {
       var ul = document.getElementById("countries");
       var el = document.createElement('li');
@@ -29053,10 +29053,16 @@ __webpack_require__.r(__webpack_exports__);
         string.push("".concat(item.deaths, " Fallecidos"));
       }
 
-      el.innerHTML = "<a href=\"#\">".concat(name, "</a>\n                    <div class=\"results\">\n                        <span class=\"confirmed\" title=\"Casos confirmados | ").concat(name, "\">\n                            <img src=\"./images/users-confirmed.svg\" alt=\"Casos confirmados | ").concat(name, "\">\n                            ").concat(item.confirmed, "\n                        </span>  / \n                        <span class=\"recovered\" title=\"Total recuperados | ").concat(name, "\">\n                            <img src=\"./images/users-recovered.svg\" alt=\"Total recuperados | ").concat(name, "\">\n                            ").concat(item.recovered, "\n                        </span> / \n                        <span class=\"deaths\" title=\"Total Fallecidos | ").concat(name, "\">\n                            <img src=\"./images/users-deaths.svg\" alt=\"Total Fallecidos | ").concat(name, "\">\n                            ").concat(item.deaths, "\n                        </span>\n                    </div>\n                ");
+      el.innerHTML = "<a href=\"#\" data-lat=\"".concat(item.lat, "\" data-lng=\"").concat(item.lng, "\">").concat(name, "</a>\n                    <div class=\"results\">\n                        <span class=\"confirmed\" title=\"Casos confirmados | ").concat(name, "\">\n                            <img src=\"./images/users-confirmed.svg\" alt=\"Casos confirmados | ").concat(name, "\">\n                            ").concat(item.confirmed, "\n                        </span>  / \n                        <span class=\"recovered\" title=\"Total recuperados | ").concat(name, "\">\n                            <img src=\"./images/users-recovered.svg\" alt=\"Total recuperados | ").concat(name, "\">\n                            ").concat(item.recovered, "\n                        </span> / \n                        <span class=\"deaths\" title=\"Total Fallecidos | ").concat(name, "\">\n                            <img src=\"./images/users-deaths.svg\" alt=\"Total Fallecidos | ").concat(name, "\">\n                            ").concat(item.deaths, "\n                        </span>\n                    </div>\n                ");
       ul.appendChild(el);
     });
     this.filterSearchCountry();
+    $(document).on('click', '#countries li', function (e) {
+      e.preventDefault();
+      var lat = $(this).find('a').attr('data-lat');
+      var lng = $(this).find('a').attr('data-lng');
+      map.panTo(new L.LatLng(lat, lng));
+    });
   },
   filterSearchCountry: function filterSearchCountry() {
     $(document).on('keyup', 'input[type="search"]', function (e) {
@@ -29080,11 +29086,63 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   populateCards: function populateCards(data) {
-    document.getElementById("fatality").innerHTML = (data.total_death / data.total_cases * 100).toFixed(2);
-    document.getElementById("recovered").innerHTML = (data.total_recovered / data.total_cases * 100).toFixed(2);
+    this.animateValue("confirmed", 0, data.total_cases, 2500);
+    this.animateValue("recovered", 0, data.total_recovered, 2500);
+    this.animateValue("deaths", 0, data.total_death, 2500);
+    this.animateValue("fatality", 0, (data.total_death / data.total_cases * 100).toFixed(2), 2500);
+    this.animateValue("recovered-p", 0, (data.total_recovered / data.total_cases * 100).toFixed(2), 2500);
+    var today = data.world_history[0];
+    var yesterday = data.world_history[0];
+
+    if (today.new_confirmed > yesterday.new_confirmed) {
+      $('#world-cases').closest('.card').addClass('up yellow');
+    } else {
+      $('#world-cases').closest('.card').addClass('down green');
+    }
+
     this.animateValue("world-cases", 0, data.world_total_cases, 2500);
+
+    if (today.new_recovered > yesterday.new_recovered) {
+      $('#world-recovered').closest('.card').addClass('up green');
+    } else {
+      $('#world-recovered').closest('.card').addClass('down yellow');
+    }
+
     this.animateValue("world-recovered", 0, data.world_total_recovered, 2500);
-    this.animateValue("world-fatalities", 0, data.world_total_death, 2500);
+
+    if (today.new_deaths > yesterday.new_deaths) {
+      $('#world-deaths').closest('.card').addClass('up red');
+    } else {
+      $('#world-deaths').closest('.card').addClass('down green');
+    }
+
+    this.animateValue("world-deaths", 0, data.world_total_death, 2500);
+    this.animateValue("world-fatalities", 0, (data.world_total_death / data.world_total_cases * 100).toFixed(2), 2500);
+    this.animateValue("world-recovered-p", 0, (data.world_total_recovered / data.world_total_cases * 100).toFixed(2), 2500);
+    /**
+     * Build chart
+     */
+
+    var maxConfirmed = Math.max.apply(Math, data.world_history.map(function (o) {
+      return o.confirmed;
+    }));
+    var valueRepresentative;
+    var chartTemplate = '';
+    data.world_history.reverse().forEach(function (day) {
+      if (day.confirmed) {
+        valueRepresentative = day.confirmed * 100 / maxConfirmed;
+        chartTemplate += "<span style=\"height: ".concat(valueRepresentative, "%;\" title=\"Confirmados Global\" class=\"bars\"></span>");
+      }
+    });
+    $('.statics').append("<div class=\"growth-cases\">".concat(chartTemplate, "</div>"));
+    chartTemplate = '';
+    data.world_history.forEach(function (day) {
+      if (day.recovered) {
+        valueRepresentative = day.recovered * 100 / maxConfirmed;
+        chartTemplate += "<span style=\"height: ".concat(valueRepresentative, "%;\" title=\"Recuperados Global\" class=\"bars\"></span>");
+      }
+    });
+    $('.statics').append("<div class=\"growth-recovered\">".concat(chartTemplate, "</div>"));
   }
 });
 
