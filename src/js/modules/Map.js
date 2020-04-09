@@ -47,7 +47,7 @@ export default {
             });
 
 
-        Util.populateWoldList(this.countries);
+        Util.populateWoldList(this.countries, this.map);
         Util.populateProvinceList(this.data.states);
     },
 
