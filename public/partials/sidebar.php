@@ -121,6 +121,9 @@
                 <a href="https://www.linkedin.com/company/sistemas-mapache/">Sistemas Mapache</a> <br><br>
             </div>
 
+            <div class="no-absolute">
+                <?php include 'buyMeACoffee.php';?>
+            </div>
         </div>
         <div class="content argentina">
             <div class="header">

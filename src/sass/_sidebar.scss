@@ -8,9 +8,10 @@
     height: 100%;
     left: 0;
     top: 0;
-    box-shadow: 0 0 12px 2px #000;
+    box-shadow: 0 0 12px 2px #383838;
     transition: left .3s;
     @include _respond_to(md-down){
+        box-shadow: none;
         position: absolute;
         flex-flow: column;
         padding-top : 50px;
@@ -32,7 +33,7 @@
         @include _respond_to(md-down){
             flex-flow: row;
             width : 100vw;
-
+            padding-top: 5px;
         }
         .item {
             width: 100%;
@@ -204,6 +205,9 @@
                 top:0;
                 display: flex;
                 flex-flow: column;
+                @include _respond_to(md-down){
+                    overflow-y  : hidden;
+                }
                 .header {
                     padding-left: 30px;
                     padding-right: 30px;
@@ -213,6 +217,9 @@
                 top:0;
                 display: flex;
                 flex-flow: column;
+                @include _respond_to(md-down){
+                    overflow-y  : hidden;
+                }
                 .header {
                     padding-left: 30px;
                     padding-right: 30px;

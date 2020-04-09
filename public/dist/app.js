@@ -33944,9 +33944,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
  * URL
  * @type {string}
  */
+// const API_URL = 'https://01567818.ngrok.io/api';
 
 
-var API_URL = 'https://01567818.ngrok.io/api'; // const API_URL = 'https://api.covid19argentina.com/api';
+var API_URL = 'https://api.covid19argentina.com/api';
 
 var Api = /*#__PURE__*/function () {
   function Api() {
@@ -34002,10 +34003,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/Map */ "./src/js/modules/Map.js");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _modules_Util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Util */ "./src/js/modules/Util.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /**
  * Created by Ezequiel on 26/03/2020.
  */
+
 
 
 
@@ -34013,6 +34016,7 @@ window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 window.$ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   _modules_Map__WEBPACK_IMPORTED_MODULE_1__["default"].init();
+  _modules_Util__WEBPACK_IMPORTED_MODULE_2__["default"].heightMobile();
   /**
    * Menu controls Jquery
    */
@@ -34040,11 +34044,11 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.menu-opener').click(function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass('open')) {
-      gsap__WEBPACK_IMPORTED_MODULE_2__["gsap"].to(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sidebar'), 0.5, {
+      gsap__WEBPACK_IMPORTED_MODULE_3__["gsap"].to(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sidebar'), 0.5, {
         autoAlpha: 0
       });
     } else {
-      gsap__WEBPACK_IMPORTED_MODULE_2__["gsap"].to(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sidebar'), 0.5, {
+      gsap__WEBPACK_IMPORTED_MODULE_3__["gsap"].to(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.sidebar'), 0.5, {
         autoAlpha: 1
       });
     }
@@ -34456,6 +34460,16 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")["d
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  heightMobile: function heightMobile() {
+    var vh = window.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
+
+    document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+    window.addEventListener('resize', function () {
+      // We execute the same script as before
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+    });
+  },
   animateValue: function animateValue(id, start, end, duration) {
     // assumes integer values for start and end
     var obj = document.getElementById(id);
@@ -34674,8 +34688,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/local.covid19.com/src/js/app.js */"./src/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/local.covid19.com/src/sass/app.scss */"./src/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\coronavirus\src\js\app.js */"./src/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\coronavirus\src\sass\app.scss */"./src/sass/app.scss");
 
 
 /***/ })

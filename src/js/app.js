@@ -3,6 +3,7 @@
  */
 import $ from 'jquery';
 import Map from './modules/Map';
+import Util from './modules/Util';
 import {gsap} from "gsap";
 
 window.jQuery = $;
@@ -11,7 +12,7 @@ window.$ = $;
 $(document).ready(function () {
 
     Map.init();
-
+    Util.heightMobile();
     /**
      * Menu controls Jquery
      */

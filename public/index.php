@@ -20,8 +20,9 @@
 
 <?php include 'partials/sidebar.php';?>
 <?php include 'partials/statics.php';?>
-<?php include 'partials/buyMeACoffee.php';?>
 <?php include 'partials/rangeSlider.php';?>
+<?php include 'partials/buyMeACoffee.php';?>
+
 <div id="map_container"></div>
 
 <!--Load App-->

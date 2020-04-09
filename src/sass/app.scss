@@ -65,11 +65,15 @@ a {
 
 
 // buy me a coffee icon.
+.no-absolute {
+    .buy-me-a-coffee {
+        display: flex;
+    }
+}
 .buy-me-a-coffee {
-    position: absolute;
+    display: none;
     z-index: 11;
     border-radius: 50%;
-    display: flex;
     background: $blue;
     width: 50px;
     height: 50px;
@@ -89,7 +93,9 @@ a {
     &:hover {
         transform: rotate(15deg);
     }
-    @include _respond_to(custom, 0, 992px) {
+    @include _respond_to(md-down) {
+        position: absolute;
+        display: flex;
         width: 35px;
         height: 35px;
         bottom: auto;
@@ -109,7 +115,7 @@ a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    @include _respond_to(custom, 0, 992px) {
+    @include _respond_to(md-down) {
         margin: 0;
         max-width: 150px;
     }

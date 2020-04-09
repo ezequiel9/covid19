@@ -5,7 +5,7 @@ $range-label-width: 60px !default;
 
 
 .range-slider {
-    width: 90%;
+    width: calc(100% - 30px);
     position: absolute;
     z-index: 1;
     left: 0;
@@ -21,7 +21,7 @@ $range-label-width: 60px !default;
     }
     @include _respond_to(md-down){
         margin-top: 0;
-        bottom: 25px;
+        bottom: 80px;
     }
     .range-slider__range {
         -webkit-appearance: none;
@@ -92,7 +92,6 @@ $range-label-width: 60px !default;
         border-radius: 3px;
         background: $blue-background;
         padding: 10px 10px;
-        margin-left: 8px;
         font-size: 23px;
         font-weight: 600;
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -102,7 +101,7 @@ $range-label-width: 60px !default;
         flex-flow: column;
         align-items: center;
         justify-content: center;
-        right: -5px;
+        right: 0;
         @include _respond_to(custom, 993px, 5000px) {
             width: 60px;
         }

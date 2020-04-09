@@ -5,15 +5,15 @@
     right: 0;
     display: flex;
     flex-flow: column;
-    left: 550px;
-    width: calc(100% - 600px);
+    left: 530px;
+    width: calc(100% - 560px);
     background: white;
     border-radius: 5px;
     padding-bottom: 15px;
     transition: all .5s;
     @include _respond_to(custom, 0, 991px) {
-        left: 50px;
-        width: calc(100% - 100px);
+        left: 15px;
+        width: calc(100% - 30px);
     }
     &.closed {
         transform: translateY(94%);
@@ -185,11 +185,10 @@
         align-items: flex-end;
         justify-content: space-between;
         span.bars {
-            background: #b84d34;
+            background: rgba(120,171,222,.2);
             flex: 1;
             margin-left: 1px;
             span {
-
             }
         }
     }
@@ -202,7 +201,7 @@
         align-items: flex-end;
         justify-content: space-between;
         span.bars {
-            background: #90c51d;
+            background: rgba(120,171,222,.3);
             flex: 1;
             margin-left: 1px;
             span {

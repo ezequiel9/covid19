@@ -631,7 +631,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* Time and motion */
 
 .range-slider {
-  width: 90%;
+  width: calc(100% - 30px);
   position: absolute;
   z-index: 1;
   left: 0;
@@ -653,7 +653,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 @media only screen and (max-width: 991.98px) {
   .range-slider {
     margin-top: 0;
-    bottom: 25px;
+    bottom: 80px;
   }
 }
 
@@ -728,7 +728,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
   border-radius: 3px;
   background: #f3f7fa;
   padding: 10px 10px;
-  margin-left: 8px;
   font-size: 23px;
   font-weight: 600;
   /* Safari/Chrome, other WebKit */
@@ -739,7 +738,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  right: -5px;
+  right: 0;
 }
 
 @media only screen and (min-width: 993px) and (max-width: 5000px) {
@@ -772,12 +771,13 @@ input::-moz-focus-outer {
   height: 100%;
   left: 0;
   top: 0;
-  box-shadow: 0 0 12px 2px #000;
+  box-shadow: 0 0 12px 2px #383838;
   transition: left .3s;
 }
 
 @media only screen and (max-width: 991.98px) {
   .sidebar {
+    box-shadow: none;
     position: absolute;
     flex-flow: column;
     padding-top: 50px;
@@ -805,6 +805,7 @@ input::-moz-focus-outer {
   .sidebar .controls {
     flex-flow: row;
     width: 100vw;
+    padding-top: 5px;
   }
 }
 
@@ -1011,6 +1012,12 @@ input::-moz-focus-outer {
   flex-flow: column;
 }
 
+@media only screen and (max-width: 991.98px) {
+  .sidebar .sidebar-inner .content.argentina {
+    overflow-y: hidden;
+  }
+}
+
 .sidebar .sidebar-inner .content.argentina .header {
   padding-left: 30px;
   padding-right: 30px;
@@ -1020,6 +1027,12 @@ input::-moz-focus-outer {
   top: 0;
   display: flex;
   flex-flow: column;
+}
+
+@media only screen and (max-width: 991.98px) {
+  .sidebar .sidebar-inner .content.world {
+    overflow-y: hidden;
+  }
 }
 
 .sidebar .sidebar-inner .content.world .header {
@@ -1095,8 +1108,8 @@ input::-moz-focus-outer {
   right: 0;
   display: flex;
   flex-flow: column;
-  left: 550px;
-  width: calc(100% - 600px);
+  left: 530px;
+  width: calc(100% - 560px);
   background: white;
   border-radius: 5px;
   padding-bottom: 15px;
@@ -1105,8 +1118,8 @@ input::-moz-focus-outer {
 
 @media only screen and (min-width: 0) and (max-width: 991px) {
   .statics {
-    left: 50px;
-    width: calc(100% - 100px);
+    left: 15px;
+    width: calc(100% - 30px);
   }
 }
 
@@ -1322,7 +1335,7 @@ input::-moz-focus-outer {
 }
 
 .statics .growth-cases span.bars {
-  background: #b84d34;
+  background: rgba(120, 171, 222, 0.2);
   flex: 1;
   margin-left: 1px;
 }
@@ -1338,7 +1351,7 @@ input::-moz-focus-outer {
 }
 
 .statics .growth-recovered span.bars {
-  background: #90c51d;
+  background: rgba(120, 171, 222, 0.3);
   flex: 1;
   margin-left: 1px;
 }
@@ -1713,11 +1726,14 @@ a {
   vertical-align: -0.05em;
 }
 
+.no-absolute .buy-me-a-coffee {
+  display: flex;
+}
+
 .buy-me-a-coffee {
-  position: absolute;
+  display: none;
   z-index: 11;
   border-radius: 50%;
-  display: flex;
   background: #74AADC;
   width: 50px;
   height: 50px;
@@ -1740,8 +1756,10 @@ a {
   transform: rotate(15deg);
 }
 
-@media only screen and (min-width: 0) and (max-width: 992px) {
+@media only screen and (max-width: 991.98px) {
   .buy-me-a-coffee {
+    position: absolute;
+    display: flex;
     width: 35px;
     height: 35px;
     bottom: auto;
@@ -1762,7 +1780,7 @@ a {
   text-overflow: ellipsis;
 }
 
-@media only screen and (min-width: 0) and (max-width: 992px) {
+@media only screen and (max-width: 991.98px) {
   .leaflet-container .leaflet-control-attribution {
     margin: 0;
     max-width: 150px;
