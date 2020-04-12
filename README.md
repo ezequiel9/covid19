@@ -74,6 +74,7 @@ Covid19 usa Leaftlet como mapa base y mosaicos opensource de otros colaboradores
 | jQuery | https://jquery.com/ |
 | Javascript | Si bien el sistema usa PHP, es solo para incluir partials, El sitio usa JS. |
 | Leaftlet Maps | https://leafletjs.com/ |
+| Gsap | https://greensock.com/gsap/
 | Goggle Drive | To get data from Google docs api to covid api |
 | Google Analytics | For tracking data
 
