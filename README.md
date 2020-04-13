@@ -23,11 +23,11 @@ Algunos endpoints creados
 
 **Info Argentina y Resto del mundo**
 ```
-https://api.covid19argentina.com/api/argentina/daily
+https://api.covid19argentina.com/api/argentina/info
 ```
 **Informacion diaria del mundo**
 ```
-https://api.covid19argentina.com/api/countries
+https://api.covid19argentina.com/api/countries/info
 ```
 **Informacion diaria historica de casos en Argentina** 
 ```
