@@ -176,7 +176,11 @@ export default{
         this.animateValue("recovered-p", 0, ((data.total_recovered / data.total_cases) * 100).toFixed(2), 2500);
 
         let today = data.world_history[0];
-        let yesterday = data.world_history[0];
+        let yesterday = data.world_history[1];
+        if (today.is_in_progress) {
+            today = data.world_history[1];
+            yesterday = data.world_history[2];
+        }
 
         if (today.new_confirmed > yesterday.new_confirmed) {
             $('#world-cases').closest('.card').addClass('up yellow')
