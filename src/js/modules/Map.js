@@ -191,10 +191,10 @@ export default {
                     popup += `<div class="cases">Recuperados: ${country.recovered}</div>`;
                 }
                 if (country.today_confirmed > 0) {
-                    popup += `<div class="cases">Confirmados Hoy: ${country.recovered}</div>`;
+                    popup += `<div class="cases">Confirmados Hoy: ${country.today_confirmed}</div>`;
                 }
                 if (country.today_deaths > 0) {
-                    popup += `<div class="cases">Fallecidos Hoy: ${country.recovered}</div>`;
+                    popup += `<div class="cases">Fallecidos Hoy: ${country.today_deaths}</div>`;
                 }
                 if (country.critical > 0) {
                     popup += `<div class="cases">Estado critico: ${country.critical}</div>`;
