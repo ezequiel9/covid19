@@ -114,11 +114,14 @@
             </div>
 
             <div class="contributors">
-                Creado por: <br>
-                <a href="https://ezequielfernandez.com">www.ezequielfernandez.com</a> <br>
-                <a href="https://www.linkedin.com/in/ezequiel9/">Linkedin</a> <br><br>
-                Contribuyen con información: <br>
-                <a href="https://www.linkedin.com/company/sistemas-mapache/">Sistemas Mapache</a> <br><br>
+                <div class="contributors-label">Creado por:</div>
+                <a href="https://ezequielfernandez.com" target="_blank">www.ezequielfernandez.com</a> 
+                <a href="https://www.linkedin.com/in/ezequiel9/">Linkedin</a> 
+                <div class="contributors-label">Contribuyen con información y desarrollo: </div>
+            
+                <a href="https://www.linkedin.com/in/tabordaemilia/" target="_blank">Emilia Taborda</a> 
+                <a href="https://publica.co.nz/" target="_blank">Studio Publica</a> 
+                <a href="https://www.linkedin.com/in/alan-coppin-8aa26ba5/" target="_blank">Alan Coppin</a>
             </div>
 
             <div class="no-absolute">

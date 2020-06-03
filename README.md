@@ -2,11 +2,11 @@
 
 [![N|Solid](https://ezequielfernandez.com/covid-19logo.png)](https://ezequielfernandez.com/covid-19logo.png)
 
-Covid19 Argentina es es un website en el cual se muestra un mapa con los casos de coronavirus y algunos otros graficos mas.
+Covid19 Argentina es un website en el cual se muestra un mapa con los casos de coronavirus y algunos otros gráficos más.
 
   - Mapa Argentina por provincias
-  - Mapa Mundial con informacion actualizada
-  - Graficos
+  - Mapa Mundial con información actualizada
+  - Gráficos
 
 Puedes tambien:
   - Colaborar ya sea con codigo para una nueva funcionalidad
@@ -75,13 +75,13 @@ Covid19 usa Leaftlet como mapa base y mosaicos opensource de otros colaboradores
 | Javascript | Si bien el sistema usa PHP, es solo para incluir partials, El sitio usa JS. |
 | Leaftlet Maps | https://leafletjs.com/ |
 | Gsap | https://greensock.com/gsap/
-| Goggle Drive | To get data from Google docs api to covid api |
+| Google Drive | To get data from Google docs api to covid api |
 | Google Analytics | For tracking data
 
 
 ### Development
 
-Queres contribuir? Genial!
+Querés contribuir? Genial!
 
 Covid19 usa Webpack (Laravel mix) para compilar el js. 
 No tengo npm en el servidor, razon por la cual he puesto los archivos compilados en git.

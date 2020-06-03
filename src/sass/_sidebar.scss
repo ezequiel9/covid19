@@ -199,7 +199,15 @@
                 .contributors {
                     font-size: 14px;
                     color: $gray;
-                    margin-top: 20px;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                    .contributors-label {
+                        margin-top: 10px;
+                        font-weight: bold;
+                    }
+                    a {
+                        display: block;
+                    }
                 }
             }
             &.argentina {
