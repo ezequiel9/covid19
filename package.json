@@ -4,7 +4,7 @@
   "description": "Para salir andando rápido: - Con Python ```bash python -m SimpleHTTPServer ```",
   "main": "leaflet.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "css-loader": "^3.4.2",
     "gsap": "^3.2.6",
     "jquery": "^3.5.0",
