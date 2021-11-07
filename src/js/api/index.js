@@ -4,8 +4,8 @@ const axios = require('axios').default;
  * URL
  * @type {string}
  */
-// const API_URL = 'https://local.coronavirus.api/api';
-const API_URL = 'https://api.covid19argentina.com/api';
+//const API_URL = 'https://local.covid19api/api';
+const API_URL = 'https://covid19api.ezequielfernandez.com/api';
 
 
 export default class Api{

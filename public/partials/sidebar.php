@@ -115,11 +115,10 @@
 
             <div class="contributors">
                 <div class="contributors-label">Creado por:</div>
-                <a href="https://ezequielfernandez.com" target="_blank">www.ezequielfernandez.com</a> 
-                <a href="https://www.linkedin.com/in/ezequiel9/">Linkedin</a> 
-                <div class="contributors-label">Contribuyen con información y desarrollo: </div>
-            
+                <a href="https://ezequielfernandez.com" target="_blank">Ezequiel Fernandez</a> 
                 <a href="https://www.linkedin.com/in/tabordaemilia/" target="_blank">Emilia Taborda</a> 
+                <div class="contributors-label">Contribuyen con información y desarrollo: </div>
+             
                 <a href="https://publica.co.nz/" target="_blank">Studio Publica</a> 
                 <a href="https://www.linkedin.com/in/alan-coppin-8aa26ba5/" target="_blank">Alan Coppin</a>
             </div>
